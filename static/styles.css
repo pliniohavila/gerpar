@@ -1,0 +1,95 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Noto Sans', sans-serif;
+	font-weight: 400;
+	background: rgb(241 241 241);
+}
+
+header {
+	text-align: center;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	margin-bottom: 2rem;
+	color: white;
+	background-color: black;
+
+	border-bottom: 1 px solid;
+}
+
+main {
+	margin: auto;
+	width: 50%;
+	border: 3px solid green;
+	padding: 10px;
+}
+
+
+form {
+	padding: 1rem 0 1rem 0;
+}
+
+.input-group {
+	margin-bottom: 1rem;
+}
+
+.input-group label {
+	font-weight: 600;
+}
+
+.input-group p {
+	font-weight: 600;
+}
+
+.input-group input {
+	padding: .3rem;
+}
+
+.input-group input[type="radio"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
+button {
+	width: 100%;
+	margin: 1rem 0rem;
+    height: 50px;
+	background-color: green;
+    border: none;
+    color: white;
+	font-size:1.5rem;
+    padding: 0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4f9436;
+}
+
+#id {
+	width: auto;
+}
+
+footer {
+    bottom: 0;
+    position: fixed;
+
+	/*margin-top: 2rem;*/
+	text-align: center;
+
+	line-height: 2.5rem;
+	width: 100%;
+
+	color: white;
+	opacity: 0.6rem;
+	background-color: black;
+}
+
+footer a {
+	text-decoration: none;
+	color: white;
+}

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+<h1> Informações do Parecer </h1>
+	<p>Preenche as informações para gerar o parecer</p>
+
+	<form action="/gerpar" method="POST">
+		<div class="input-group">
+			<label class="" for="requerente">Requerente: </label>
+			<input type="text" name="requerente" id="requerente" placeholder="Requerente" style="width: 82%"/>
+		</div>
+		<div class="input-group">
+			<label class="" for="assunto">Assunto: </label> </br>
+			<!-- <input type="text" name="assunto" id="assunto" placeholder="Assunto"/></br> -->
+			<textarea name="assunto" id="assunto" placeholder="Assunto" rows="2" cols="90%" required> </textarea>
+
+		</div>
+		<div class="input-group">
+			<label class="" for="processo">Processo: </label>
+			<input type="text" name="processo" id="processo" placeholder="000-2022" pattern="[0-9]{3}-[0-9]{4}" required />  <!--pattern="[0-9]{3}-[0-9]{4}-->
+			<small class="help">Formato aceito: 000-2022</small>
+		</div>
+
+		<div class="input-group">
+            <label class=" for="num_modalidade">Número da processo/modalidade:</label>
+            <input type="text" name="num_modalidade" id="num_modalidade" placeholder="025-2022"  pattern="[0-9]{3}-[0-9]{4}" required />
+			<small class="help">Formato aceito: 000-2022</small>
+        </div>
+
+		<div class="input-group">
+			<label class="sr-only" for="dataEdital">Data do Parecer do Edital:</label>
+			<input type="date" name="dataEdital" id="dataEdital" />
+		</div>
+		<div class="input-group">
+			<label class="sr-only" for="dataContrato">Data do Parecer do Contrato:</label>
+			<input type="date" name="dataContrato" id="dataContrato" />
+		</div>
+
+		<div class="input-group actions">
+			<button id="gerpar">Gerar Parecer</button>
+		</div>
+	</form>
+
+{% endblock %}

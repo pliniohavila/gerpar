@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+    <h1> Pareceres Gerados </h1>
+     <a href="/download/{{ parecer_edital }} " target="_blank"><button> Baixar {{ parecer_edital }} </button></a> </br>
+     <a href="/download/{{ parecer_contrato }}" target="_blank"><button> Baixar {{ parecer_contrato }} </button></a> </br>
+     <a href="/"><button> Gerar Outro parecer </button> </a>
+
+{% endblock %}
