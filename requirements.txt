@@ -1,0 +1,8 @@
+docx==0.2.4
+Flask==2.0.3
+Flask-Session==0.4.0
+gunicorn==20.1.0
+Jinja2==3.0.3
+lxml==4.8.0
+Pillow==9.0.1
+python-docx==0.8.11
