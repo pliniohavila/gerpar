@@ -3,3 +3,4 @@
 *.xlsx
 /pareceres
 /modelos
+/__pycache__

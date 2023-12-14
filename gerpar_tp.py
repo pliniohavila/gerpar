@@ -1,37 +1,23 @@
 # -*- coding: utf-8 -*-
 from docx import Document
+from openpyxl import load_workbook
 import datetime
-
-# Para criar o parecer do edital
 
 def data_para_string(data):
     if (type(data) == str):
         return data
     return data.strftime("%d/%m/%Y")
     
-
 def parecer_edital(assunto, processo, num_modalidade, data):
-
-    # Abre o documento modelo de base
-    with open("modelos/mp_edital.docx", "rb") as docFile:
+    with open("modelos/tomada_de_preco_edital.docx", "rb") as docFile:
         doc = Document(docFile)
 
-    # Laco for que pecorre o documento e realiza a adicao
-    # das informacoes do novo parecer
     for paragraph in doc.paragraphs:
-    #     if "[REQUERENTE]" in paragraph.text:
-    #         orig_text = paragraph.text
-    #         new_text = str.replace(orig_text, "[REQUERENTE]", requerente)
-    #         paragraph.text = new_text
-
         if "[ASSUNTO]" in paragraph.text:
             for run in paragraph.runs:
                 if "[ASSUNTO]" in run.text:
                     run.text = run.text.replace("[ASSUNTO]", assunto)
                     break
-            # orig_text = paragraph.text
-            # new_text = str.replace(orig_text, "[ASSUNTO]", assunto)
-            # paragraph.text = new_text
 
         elif "[MODALIDADE_N]" in paragraph.text:
             orig_text = paragraph.text
@@ -48,26 +34,15 @@ def parecer_edital(assunto, processo, num_modalidade, data):
             new_text = str.replace(orig_text, "[DATA]", data_para_string(data))
             paragraph.text = new_text
 
-    # Salva o novo parecer criado
     nome_documento = str.replace(processo, '/', '-')
-    doc.save("pareceres/Parecer_Edital_%s.docx" % (nome_documento))
-
-# Para criar o parecer do contrato
+    doc.save("pareceres/Parecer_tp_Edital_%s.docx" % (nome_documento))
 
 
 def parecer_contrato(assunto, processo, num_modalidade, data):
-
-    # Abre o documento modelo de base
-    with open("modelos/mp_contrato.docx", "rb") as docFile:
+    with open("modelos/tomada_de_preco_contrato.docx", "rb") as docFile:
         doc = Document(docFile)
 
-    # Laco for que pecorre o documento e realiza a adicao
-    # das informacoes do novo parecer
     for paragraph in doc.paragraphs:
-    #     if "[REQUERENTE]" in paragraph.text:
-    #         orig_text = paragraph.text
-    #         new_text = str.replace(orig_text, "[REQUERENTE]", requerente)
-    #         paragraph.text = new_text
         if "[ASSUNTO]" in paragraph.text:
             for run in paragraph.runs:
                 if "[ASSUNTO]" in run.text:
@@ -88,6 +63,25 @@ def parecer_contrato(assunto, processo, num_modalidade, data):
             new_text = str.replace(orig_text, "[DATA]", data_para_string(data))
             paragraph.text = new_text
 
-    # Salva o novo parecer criado
     nome_documento = str.replace(processo, '/', '-')
-    doc.save("pareceres/Parecer_Contrato_%s.docx" % (nome_documento))
+    doc.save("pareceres/Parecer_tp_Contrato_%s.docx" % (nome_documento))
+
+def make_parecer(data):
+    assunto = data[0]
+    processo = data[1]
+    num_modalidade = data[2]
+    dataEdital = data[3]
+    dataContrato = data[4]
+
+    parecer_edital(assunto, processo, num_modalidade, dataEdital)
+    parecer_contrato(assunto, processo, num_modalidade, dataContrato)
+
+
+def main():
+    wb = load_workbook(filename='relacao_contratos_tp.xlsx')
+    ws = wb.active
+    for row in ws.iter_rows(values_only=True):
+        make_parecer(row)
+
+if __name__ == "__main__":
+   main()
