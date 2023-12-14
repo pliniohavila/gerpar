@@ -1,4 +1,5 @@
 *.csv
 *.xls
-*.xlxs
+*.xlsx
 /pareceres
+/modelos
