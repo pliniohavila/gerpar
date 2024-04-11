@@ -3,17 +3,15 @@ from docx import Document
 import datetime
 
 # Para criar o parecer do edital
-
 def data_para_string(data):
     if (type(data) == str):
         return data
     return data.strftime("%d/%m/%Y")
     
-
 def parecer_edital(assunto, processo, num_modalidade, data):
 
     # Abre o documento modelo de base
-    with open("modelos/mp_edital.docx", "rb") as docFile:
+    with open("modelos/pregao_edital.docx", "rb") as docFile:
         doc = Document(docFile)
 
     # Laco for que pecorre o documento e realiza a adicao
@@ -52,13 +50,9 @@ def parecer_edital(assunto, processo, num_modalidade, data):
     nome_documento = str.replace(processo, '/', '-')
     doc.save("pareceres/Parecer_Edital_%s.docx" % (nome_documento))
 
-# Para criar o parecer do contrato
-
-
 def parecer_contrato(assunto, processo, num_modalidade, data):
-
     # Abre o documento modelo de base
-    with open("modelos/mp_contrato.docx", "rb") as docFile:
+    with open("modelos/pregao_contrato.docx", "rb") as docFile:
         doc = Document(docFile)
 
     # Laco for que pecorre o documento e realiza a adicao
