@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from docx import Document
 from docx.shared import Inches
+from docx.enum.style import WD_STYLE_TYPE
 import re
 import os
 
@@ -64,16 +65,25 @@ def get_letters_name(folder):
 def create_word_table(data_array, template_path):
     # Abre o documento de template
     doc = Document(template_path)
+    # for style in doc.styles:
+    #     if style.type == WD_STYLE_TYPE.TABLE:
+    #         print(f"- {style.name}")
 
-    # Procura o texto "[TABELA]" no documento
+    # # Define um novo estilo de tabela personalizado
+    table_style = doc.styles.add_style('CustomTableStyle', WD_STYLE_TYPE.TABLE)
+    table_style.base_style = doc.styles['Normal Table']
+    table_style.font.name = 'Times New Roman'
+    # table_style.font.size = Pt(12)
+
+    # # Procura o texto "[TABELA]" no documento
     for paragraph in doc.paragraphs:
         if paragraph.text == '[TABELA]':
             # Remove o parágrafo com o texto "[TABELA]"
             paragraph.clear()
 
             # Cria uma tabela com 5 colunas e 1 linha (para o cabeçalho)
-            # table = doc.add_table(rows=1, cols=5, style='Table Grid')
-            table = doc.add_table(rows=1, cols=5)
+            table = doc.add_table(rows=1, cols=5, style='CustomTableStyle')
+            # table = doc.add_table(rows=1, cols=5)
 
             # Define os cabeçalhos da tabela
             table.cell(0, 0).text = 'Ofício'
@@ -85,8 +95,8 @@ def create_word_table(data_array, template_path):
             # Itera sobre o array de dados e preenche a tabela
             for data in data_array:
                 row = table.add_row().cells
-                row[0].text = data.get('oficio_name', '')
-                row[1].text = data.get('oficio_date', '')
+                row[0].text = data.get('letter_number', '')
+                row[1].text = data.get('letter_date', '')
                 row[2].text = data.get('contract_number', '')
                 row[3].text = data.get('item_code', '')
                 row[4].text = data.get('company_name', '')
