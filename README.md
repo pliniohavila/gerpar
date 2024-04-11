@@ -3,7 +3,7 @@
 #### On Heroku: <https://gerpar.herokuapp.com/>
 #### Description:
 
-    According to Brazilian law, every purchase by the government must be made through a bidding process. There are several
+According to Brazilian law, every purchase by the government must be made through a bidding process. There are several
 modalities of this process, but among them is the pregão. This is the simplest and most widely used. 
     During this process, two legal documents are issued, in theory. It happens that, due to the quantity of processes, the
 issuing of these documents ends up being a repetitive task, since little information is changed between one document and another. 
